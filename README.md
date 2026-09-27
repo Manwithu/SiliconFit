@@ -1,72 +1,178 @@
-# SiliconFit Secure
+SiliconFit Secure
 
-|**Security -- Debug -- Fix -- Test -- Optimize -- Verify -- Release**|
+Security — Debug — Fix — Test — Optimize — Verify — Release
 
-A deterministic developer workflow platform that turns a problem into evidence:
-technology choice, workflow plan, security scan, debug analysis, processor-fit assessment,
-benchmark measurements, deployment checklist, and release gate.
+SiliconFit Secure is a deterministic developer workflow platform that transforms software development challenges into structured, evidence-based engineering analysis. It integrates security scanning, debugging analysis, processor-fit assessment, testing, benchmarking, deployment validation, and release-readiness evaluation into a unified workflow.
 
-## Architecture
+Problem Statement
 
-```
-BOB 2.0          = Orchestrator (guides the session)
-SILICONFIT       = Deterministic evidence engine
-DEVELOPER        = Final decision maker
-```
+Modern software development often requires developers to use multiple disconnected tools for security analysis, debugging, testing, performance benchmarking, hardware or processor compatibility assessment, dependency validation, and deployment readiness.
 
-## Features
+This fragmented workflow can result in:
 
-| Tab | Feature |
-|-----|---------|
-| Dashboard | Project status, all check summaries |
-| Upload & Analyze | Multi-file upload, language detection, security + debug snapshot |
-| Processor Fit | Language × target compatibility matrix + source heuristics |
-| Debug & Fix | Static heuristic bug/reliability analysis |
-| Tests | Test discovery, execution, PASS/FAIL/ERROR/SKIPPED parsing |
-| Benchmark | Wall-clock timing, CV, outliers, baseline comparison |
-| Defensive Security | Multi-language static security scanner |
-| Public Security DB | Local curated CWE reference (not a live CVE database) |
-| Bob 2.0 Workflow | Evidence-driven workflow with live step status |
-| Developer Chat | Rule-based Q&A from session evidence |
-| Documentation | Inline README + AGENTS.md |
-| Commit Message | Conventional Commits generator |
-| Dependencies | Dependency manifest health |
-| Deployment | Deployment readiness checklist |
-| Release Gate | Evidence-based gate (security + tests + debug + benchmark) |
-| Engineering Report | Downloadable Markdown report |
+- Increased development and debugging time
+- Inconsistent analysis across different tools
+- Security issues being discovered late in the development lifecycle
+- Difficulty determining whether code is suitable for a specific processor or target platform
+- Limited visibility into the relationship between code changes and performance
+- Manual effort in validating tests, dependencies, and deployment readiness
+- Unclear evidence for determining whether a project is ready for release
 
-## Supported Languages
+Project Purpose
 
-C · C++ · Python · Rust · Go · Java · JavaScript · TypeScript · Custom
+SiliconFit Secure addresses this problem by bringing these engineering checks into a single evidence-driven workflow.
 
-## Processor Targets
+Instead of providing only AI-generated suggestions, the platform combines deterministic analysis, measurable results, structured heuristics, and workflow orchestration to help developers move systematically from an identified problem to a release decision.
 
-Generic x86-64 · Intel x86-64 · AMD x86-64 · ARM64 · RISC-V 64 · ESP32-class MCU
+The workflow follows:
 
-## Installation
+Problem
+   ↓
+Analyze
+   ↓
+Security
+   ↓
+Debug
+   ↓
+Fix
+   ↓
+Test
+   ↓
+Optimize
+   ↓
+Benchmark
+   ↓
+Verify
+   ↓
+Release Gate
 
-Fully local — `streamlit` + `pytest` only. No cloud AI API, no API key.
+The platform assists developers rather than replacing engineering judgment. Each result is presented as evidence that can be reviewed before making a technical decision.
 
-```bat
+Architecture
+
+BOB 2.0          = Orchestrator — guides and coordinates the workflow
+SILICONFIT       = Evidence Engine — performs deterministic analysis
+DEVELOPER        = Final Decision Maker — reviews evidence and approves actions
+
+Features
+
+Module| Description
+Dashboard| Project status and consolidated analysis summaries
+Upload & Analyze| Multi-file upload, language detection, security scanning, and debugging analysis
+Processor Fit| Language-to-target compatibility analysis with source-level heuristics
+Debug & Fix| Static analysis of potential bugs and reliability issues
+Tests| Test discovery, execution, and PASS/FAIL/ERROR/SKIPPED result parsing
+Benchmark| Wall-clock timing, coefficient of variation, outlier detection, and baseline comparison
+Defensive Security| Multi-language static security analysis
+Public Security DB| Curated local CWE reference database
+Bob 2.0 Workflow| Evidence-driven development workflow with live step status
+Developer Chat| Rule-based assistance based on available project evidence
+Documentation| Integrated README and AGENTS.md documentation
+Commit Message| Conventional Commits message generation
+Dependencies| Dependency manifest and health assessment
+Deployment| Deployment-readiness checklist
+Release Gate| Evidence-based evaluation of security, testing, debugging, and benchmarking
+Engineering Report| Downloadable Markdown engineering report
+
+Supported Languages
+
+- C
+- C++
+- Python
+- Rust
+- Go
+- Java
+- JavaScript
+- TypeScript
+- Custom
+
+Processor Targets
+
+- Generic x86-64
+- Intel x86-64
+- AMD x86-64
+- ARM64
+- RISC-V 64
+- ESP32-class microcontrollers
+
+Accessing the Application
+
+Online Access
+
+The deployed version of SiliconFit Secure can be accessed directly through the following link:
+
+"Open SiliconFit Secure" (https://siliconfit-secure.streamlit.app/)
+
+No local installation is required to access the deployed application.
+
+Local Access
+
+SiliconFit Secure can also be run locally from the project source code.
+
+Prerequisites
+
+- Python 3.10 or later
+- Git
+- Windows, Linux, or macOS
+
+1. Clone the Repository
+
+git clone <repository-url>
+cd SiliconFit-Secure
+
+2. Create a Virtual Environment
+
+Windows:
+
 py -m venv .venv
 .venv\Scripts\activate
+
+Linux/macOS:
+
+python3 -m venv .venv
+source .venv/bin/activate
+
+3. Install Dependencies
+
 python -m pip install -r requirements.txt
-python -m pytest -v
+
+4. Start SiliconFit Secure
+
 streamlit run app.py
-```
 
-## Running tests without internet access
+Once Streamlit starts, open the local address displayed in the terminal. By default, this is:
 
-```bash
+http://localhost:8501
+
+5. Run the Test Suite
+
+python -m pytest -v
+
+For environments without internet access:
+
 python -c "import sys; sys.path.insert(0,'siliconfit'); sys.path.insert(0,'siliconfit/tests'); import pytest; pytest.main(['-v','siliconfit/tests'])"
-```
 
-## Key constraints
+Engineering Principles
 
-- Never fabricate test results, benchmark values, security findings, or processor specs.
-- All advisory outputs are labelled `advisory: True`.
-- No Ollama, Granite, or cloud AI APIs.
-- Secret values detected in source are never displayed.
-- PASS ≠ secure; READY FOR REVIEW ≠ production-ready.
+SiliconFit Secure follows several principles to maintain reliable and transparent analysis:
 
-See `AGENTS.md` and `bob_workflow.md` for IBM Bob 2.0 usage.
+- Test results, benchmark measurements, security findings, and processor specifications are never fabricated.
+- Advisory outputs are explicitly labelled "advisory: True".
+- Detected secret values are never displayed.
+- Security findings are presented as analysis rather than guarantees of security.
+- A "PASS" status does not imply that the software is completely secure.
+- "READY FOR REVIEW" does not imply production readiness.
+- Final engineering decisions remain with the developer.
+
+IBM Bob 2.0 Integration
+
+IBM Bob 2.0 serves as the workflow orchestrator, guiding the development process and coordinating the analysis stages.
+
+SiliconFit provides the deterministic engineering evidence used throughout the workflow, while the developer reviews the evidence and makes the final decision.
+
+Detailed IBM Bob 2.0 usage and workflow information is documented in:
+
+- "AGENTS.md"
+- "bob_workflow.md"
+
+- To access website:https://siliconfit-secure.streamlit.app/
