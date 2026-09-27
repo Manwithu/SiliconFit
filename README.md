@@ -234,7 +234,7 @@ Detailed IBM Bob 2.0 usage and workflow information is documented in:
 
 ### Prototype Dashboard
 
-![main](demo.png)
+![main](Demo.png)
 ## Screenshots Of Use of BoB 2.0
 ![main](Screenshot1.png)
 ![main](Screenshot2.png)
